@@ -1,0 +1,6 @@
+biopython==1.79
+HTSeq==2.0.1
+numpy==1.22.4
+pandas==1.4.2
+pathlib==1.0.1
+pysam==0.19.1
