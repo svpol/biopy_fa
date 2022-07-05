@@ -94,15 +94,15 @@ def translate(record, table=1, stop_symbol='*', to_stop=False, cds=False, gap=No
 if __name__ == "__main__":
 
     # Example 1. Find all DNA sequences related to chromosome 7, then transcribe and translate them.
-    chr7 = find_in_description('./Sample_1/Sample_1.fasta', 'chromosome 7', 'fasta', gz=False)
+    chr7 = find_in_description('./test_files/Sample_1/Sample_1.fasta', 'chromosome 7', 'fasta', gz=False)
     ch7_transcribed = parse_file(chr7, 'fasta', False, transcribe)
     parse_file(ch7_transcribed, 'fasta', False, translate)
 
     # Example 2. Make reverse complements for DNA sequences, transcribe and translate them.
-    rev_com = parse_file('./Sample_2/Sample_2.fastq.gz', 'fastq', True, reverse_complement)
+    rev_com = parse_file('./test_files/Sample_2/Sample_2.fastq.gz', 'fastq', True, reverse_complement)
     rc_transcribed = parse_file(rev_com, 'fastq', True, transcribe)
     parse_file(rc_transcribed, 'fastq', True, translate, table=2)
 
     # Example 3. Back transcribe RNA sequences and translate DNA.
-    tr = parse_file('./Sample_3/Sample_3_RNA.fastq.gz', 'fastq', True, back_transcribe)
+    tr = parse_file('./test_files/Sample_3/Sample_3_RNA.fastq.gz', 'fastq', True, back_transcribe)
     parse_file(tr, 'fastq', True, translate)
