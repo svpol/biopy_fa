@@ -29,7 +29,7 @@ def find_in_description(filepath, str_to_find, ext, gz):
                     SeqIO.write(record, out_handle, ext)
     else:
         records = SeqIO.parse(filepath, ext)
-        with open(out_path, "w") as out_handle:
+        with open(out_path, "w", encoding='utf-8') as out_handle:
             for record in records:
                 if str_to_find in record.description:
                     SeqIO.write(record, out_handle, ext)

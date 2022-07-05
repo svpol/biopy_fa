@@ -40,7 +40,7 @@ def parse_file(filepath, ext, gz, func_name, **kwargs):
                 else:
                     SeqIO.write(record, out_handle, ext)
     else:
-        with open(out_path, "w") as out_handle:
+        with open(out_path, "w", encoding='utf-8') as out_handle:
             records = SeqIO.parse(filepath, ext)
             for record in records:
                 func_name(record, **kwargs)
