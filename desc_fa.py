@@ -23,7 +23,7 @@ def find_in_description(filepath, str_to_find, ext, gz):
     if gz:
         out_path = Path(out_dir, out_file + ".gz")
         records = SeqIO.parse(gzip.open(filepath, mode='rt', encoding='utf-8'), ext)
-        with gzip.open(out_path, "wt") as out_handle:
+        with gzip.open(out_path, "wt", encoding='utf-8') as out_handle:
             for record in records:
                 if str_to_find in record.description:
                     SeqIO.write(record, out_handle, ext)
