@@ -1,4 +1,4 @@
-There are 2 modules in this package:
+The package consists of:
 1. mat_fa - allows to perform matrix processes with nucleotide sequences. This file also contains an example usage pipeline.
 2. search_fa - allows to search records having a particular string in their description.
 3. sort_fa - allows to sort files by record ID or by sequence length. By now - for ungzipped files only.
