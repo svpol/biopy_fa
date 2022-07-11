@@ -23,6 +23,8 @@ def sort_by_id(filepath):
     ids = sorted(rec.id for rec in SeqIO.parse(filepath, ext))
     record_index = SeqIO.index(filepath, ext)
     records = (record_index[id] for id in ids)
+    for rec in records:
+        print(rec.id)
     SeqIO.write(records, out_path, ext)
     return out_path
 

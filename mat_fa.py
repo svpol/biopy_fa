@@ -3,6 +3,7 @@ from pathlib import Path
 import gzip
 from search_fa import find_in_description
 from sort_fa import sort_by_length
+from qual_fastq import high_quality_gz
 
 
 def _get_out_path(filepath, func_name, ext, gz):
@@ -96,7 +97,7 @@ def back_transcribe(records):
 def translate(records, table=1, stop_symbol='*', to_stop=False, cds=False, gap=None):
     """
     Performs translation and provides a protein sequence for a nucleotide sequence.
-    :param record: a record containing a nucleotide sequence to translate.
+    :param records: records with nucleotide sequences to translate.
     :param table: translation table, string or integer, according to
     https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi. The Standard Code by default.
     :param stop_symbol: single character string, what to use for terminators. This defaults to the asterisk, “*”.
@@ -118,6 +119,7 @@ def translate(records, table=1, stop_symbol='*', to_stop=False, cds=False, gap=N
         record.seq = record.seq.translate(table=table, stop_symbol=stop_symbol, to_stop=to_stop, cds=cds, gap=gap)
         yield record
 
+
 if __name__ == "__main__":
 
     # Example 1. Find all DNA sequences related to chromosome 7, then transcribe and translate them.
@@ -126,7 +128,8 @@ if __name__ == "__main__":
     parse_file(ch7_transcribed, translate)
 
     # Example 2. Make reverse complements for DNA sequences, transcribe and translate them.
-    rev_com = parse_gz_file('./test_files/Sample_2/Sample_2.fastq.gz', reverse_complement)
+    qual_20 = high_quality_gz('./test_files/Sample_2/Sample_2.fastq.gz', 20)
+    rev_com = parse_gz_file(qual_20, reverse_complement)
     rc_transcribed = parse_gz_file(rev_com, transcribe)
     parse_gz_file(rc_transcribed, translate, table=2)
 

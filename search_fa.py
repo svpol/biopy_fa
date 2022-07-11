@@ -27,7 +27,10 @@ def find_id_description_gz(filepath, str_to_find):
     ext = ext_dot[-2][1:]
     out_str = Path(filepath).stem.split('.')[0] + "_" + str_to_find
     out_path = _get_out_path(filepath=filepath, out_str=out_str, ext=ext, gz=True)
-    matched_recs = (rec for rec in SeqIO.parse(gzip.open(filepath, mode='rt', encoding='utf-8'), ext) if str_to_find in rec.description)
+    matched_recs = (
+        rec for rec in SeqIO.parse(gzip.open(filepath, mode='rt', encoding='utf-8'), ext)
+        if str_to_find in rec.description
+    )
     with gzip.open(out_path, "wt") as out_handle:
         SeqIO.write(matched_recs, out_handle, ext)
     return out_path
