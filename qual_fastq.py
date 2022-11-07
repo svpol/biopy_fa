@@ -35,6 +35,14 @@ def high_quality(filepath, qual):
 
 
 def high_quality_gz(filepath, qual):
+    """
+    Accepts a gzipped fastq file and searches for reads having each symbol of the sequence
+    with the quality not less than specified.
+    :param filepath: path to the fastq file.
+    :param qual: int, the quality to filter the reads by. All reads in the output file will have
+    this quality or higher.
+    :return: the path to the output file.
+    """
     ext_dot = Path(filepath).suffixes
     ext = ext_dot[-2][1:]
     out_str = "min_qual_" + str(qual)
