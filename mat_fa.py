@@ -11,14 +11,14 @@ def _get_out_path(filepath, func_name, ext, gz):
     out_stem = Path(filepath).stem.split('.')[0]
     if gz:
         if func_name == translate:
-            out_file = out_stem + "_" + func_name.__name__ + ".fasta.gz"
+            out_file = f"{out_stem}_{func_name.__name__}.fasta.gz"
         else:
-            out_file = out_stem + "_" + func_name.__name__ + "." + ext + ".gz"
+            out_file = f"{out_stem}_{func_name.__name__}.{ext}.gz"
     else:
         if func_name == translate:
-            out_file = out_stem + "_" + func_name.__name__ + ".fasta"
+            out_file = f"{out_stem}_{func_name.__name__}.fasta"
         else:
-            out_file = out_stem + "_" + func_name.__name__ + "." + ext
+            out_file = f"{out_stem}_{func_name.__name__}.{ext}"
     return Path(out_dir, out_file)
 
 

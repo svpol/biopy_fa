@@ -5,7 +5,7 @@ from pathlib import Path
 def _get_out_path(filepath, out_str, ext):
     out_dir = Path(filepath).parent
     out_stem = Path(filepath).stem.split('.')[0]
-    out_file = out_stem + "_" + out_str + "." + ext
+    out_file = f"{out_stem}_{out_str}.{ext}"
     return Path(out_dir, out_file)
 
 

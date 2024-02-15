@@ -7,9 +7,9 @@ def _get_out_path(filepath, out_str, ext, gz):
     out_dir = Path(filepath).parent
     out_stem = Path(filepath).stem.split('.')[0]
     if gz:
-        out_file = out_stem + "_" + out_str + "." + ext + ".gz"
+        out_file = f"{out_stem}_{out_str}.{ext}.gz"
     else:
-        out_file = out_stem + "_" + out_str + "." + ext
+        out_file = f"{out_stem}_{out_str}.{ext}"
     return Path(out_dir, out_file)
 
 
